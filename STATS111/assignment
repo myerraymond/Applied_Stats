@@ -1,0 +1,52 @@
+hist(lambs$feed) 
+
+boxplot(lambs$shearing_treatment)
+
+boxplot(lambs$birthweight)
+
+
+plot(as.factor(lambs$shearing_treatment),
+     ylab="Number of Lambs", main="Shearing Treatment", ylim=c(0, 120))
+
+shear = lambs$shearing_treatment
+
+birthweight= lambs$birthweight
+
+lambs.table = table(lambs$birthweight, lambs$shearing_treatment)
+
+sh.table = table(lambs$shearing_treatment, lambs$birthweight)
+
+
+summary(sh.table)
+summary(lambs.table)
+
+lambs.prop = prop.table(sh.table,2)
+barplot(lambs.prop, legend=TRUE)
+
+summary(lambs$birthweight, lambs$shearing_treatment$shorn)
+
+summary(sh.table, shorn)
+
+table(lambs$shearing_treatment)
+
+boxplot(lambs$birthweight~lambs$shearing_treatment, main="Shearing Treatment & Birthweight of Lambs",
+        ylab="Birtheight(kg)", xlab="Shearing Treatment")
+
+aggregate(birthweight~shearing_treatment, lambs, mean)
+aggregate(birthweight~shearing_treatment, lambs, sd)
+aggregate(birthweight~shearing_treatment, lambs, summary)
+summary(lambs$birthweight)
+t.test(lambs$birthweight~lambs$shearing_treatment, mu=0)
+
+
+table(lambs$feed)
+counts.table = table(lambs$rank, lambs$feed)
+counts.table
+barplot(counts.table)
+
+count.prop = prop.table(counts.table,2)
+barplot(counts.table, legend=TRUE)
+count.prop
+regime.table = table(lambs$rank, lambs$feed)
+chisq.test(regime.table)$residuals
+regime.table
